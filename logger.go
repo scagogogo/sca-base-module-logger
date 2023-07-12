@@ -2,74 +2,102 @@ package sca_base_module_logger
 
 // Debug uses fmt.Sprint to construct and log a message.
 func Debug(args ...interface{}) {
-	Log.Debug(args...)
+	if Log != nil {
+		Log.Debug(args...)
+	}
 }
 
 // Info uses fmt.Sprint to construct and log a message.
 func Info(args ...interface{}) {
-	Log.Info(args...)
+	if Log != nil {
+		Log.Info(args...)
+	}
 }
 
 // Warn uses fmt.Sprint to construct and log a message.
 func Warn(args ...interface{}) {
-	Log.Warn(args...)
+	if Log != nil {
+		Log.Warn(args...)
+	}
 }
 
 // Error uses fmt.Sprint to construct and log a message.
 func Error(args ...interface{}) {
-	Log.Error(args...)
+	if Log != nil {
+		Log.Error(args...)
+	}
 }
 
 // DPanic uses fmt.Sprint to construct and log a message. In development, the
 // logger then panics. (See DPanicLevel for details.)
 func DPanic(args ...interface{}) {
-	Log.DPanic(args...)
+	if Log != nil {
+		Log.DPanic(args...)
+	}
 }
 
 // Panic uses fmt.Sprint to construct and log a message, then panics.
 func Panic(args ...interface{}) {
-	Log.Panic(args...)
+	if Log != nil {
+		Log.Panic(args...)
+	}
 }
 
 // Fatal uses fmt.Sprint to construct and log a message, then calls os.Exit.
 func Fatal(args ...interface{}) {
-	Log.Fatal(args...)
+	if Log != nil {
+		Log.Fatal(args...)
+	}
 }
 
 // Debugf uses fmt.Sprintf to log a templated message.
 func Debugf(template string, args ...interface{}) {
-	Log.Debugf(template, args...)
+	if Log != nil {
+		Log.Debugf(template, args...)
+	}
 }
 
 // Infof uses fmt.Sprintf to log a templated message.
 func Infof(template string, args ...interface{}) {
-	Log.Infof(template, args...)
+	if Log != nil {
+		Log.Infof(template, args...)
+	}
 }
 
 // Warnf uses fmt.Sprintf to log a templated message.
 func Warnf(template string, args ...interface{}) {
-	Log.Warnf(template, args...)
+	if Log != nil {
+		Log.Warnf(template, args...)
+	}
 }
 
 // Errorf uses fmt.Sprintf to log a templated message.
 func Errorf(template string, args ...interface{}) {
-	Log.Errorf(template, args...)
+	if Log != nil {
+		Log.Errorf(template, args...)
+	}
 }
 
 // DPanicf uses fmt.Sprintf to log a templated message. In development, the
 // logger then panics. (See DPanicLevel for details.)
 func DPanicf(template string, args ...interface{}) {
-	Log.DPanicf(template, args...)
+	if Log != nil {
+		Log.DPanicf(template, args...)
+	}
 }
 
 // Panicf uses fmt.Sprintf to log a templated message, then panics.
 func Panicf(template string, args ...interface{}) {
-	Log.Panicf(template, args...)
+	if Log != nil {
+		Log.Panicf(template, args...)
+	}
 }
 
 // Fatalf uses fmt.Sprintf to log a templated message, then calls os.Exit.
 func Fatalf(template string, args ...interface{}) {
-	Log.Fatalf(template, args...)
+	if Log != nil {
+		Log.Fatalf(template, args...)
+	}
 }
 
 // Debugw logs a message with some additional context. The variadic key-value
@@ -79,83 +107,115 @@ func Fatalf(template string, args ...interface{}) {
 //
 //	s.With(keysAndValues).Debug(msg)
 func Debugw(msg string, keysAndValues ...interface{}) {
-	Log.Debugw(msg, keysAndValues...)
+	if Log != nil {
+		Log.Debugw(msg, keysAndValues...)
+	}
 }
 
 // Infow logs a message with some additional context. The variadic key-value
 // pairs are treated as they are in With.
 func Infow(msg string, keysAndValues ...interface{}) {
-	Log.Infow(msg, keysAndValues...)
+	if Log != nil {
+		Log.Infow(msg, keysAndValues...)
+	}
 }
 
 // Warnw logs a message with some additional context. The variadic key-value
 // pairs are treated as they are in With.
 func Warnw(msg string, keysAndValues ...interface{}) {
-	Log.Warnw(msg, keysAndValues...)
+	if Log != nil {
+		Log.Warnw(msg, keysAndValues...)
+	}
 }
 
 // Errorw logs a message with some additional context. The variadic key-value
 // pairs are treated as they are in With.
 func Errorw(msg string, keysAndValues ...interface{}) {
-	Log.Errorw(msg, keysAndValues...)
+	if Log != nil {
+		Log.Errorw(msg, keysAndValues...)
+	}
 }
 
 // DPanicw logs a message with some additional context. In development, the
 // logger then panics. (See DPanicLevel for details.) The variadic key-value
 // pairs are treated as they are in With.
 func DPanicw(msg string, keysAndValues ...interface{}) {
-	Log.DPanicw(msg, keysAndValues...)
+	if Log != nil {
+		Log.DPanicw(msg, keysAndValues...)
+	}
 }
 
 // Panicw logs a message with some additional context, then panics. The
 // variadic key-value pairs are treated as they are in With.
 func Panicw(msg string, keysAndValues ...interface{}) {
-	Log.Panicw(msg, keysAndValues...)
+	if Log != nil {
+		Log.Panicw(msg, keysAndValues...)
+	}
 }
 
 // Fatalw logs a message with some additional context, then calls os.Exit. The
 // variadic key-value pairs are treated as they are in With.
 func Fatalw(msg string, keysAndValues ...interface{}) {
-	Log.Fatalw(msg, keysAndValues...)
+	if Log != nil {
+		Log.Fatalw(msg, keysAndValues...)
+	}
 }
 
 // Debugln uses fmt.Sprintln to construct and log a message.
 func Debugln(args ...interface{}) {
-	Log.Debugln(args...)
+	if Log != nil {
+		Log.Debugln(args...)
+	}
 }
 
 // Infoln uses fmt.Sprintln to construct and log a message.
 func Infoln(args ...interface{}) {
-	Log.Infoln(args...)
+	if Log != nil {
+		Log.Infoln(args...)
+	}
 }
 
 // Warnln uses fmt.Sprintln to construct and log a message.
 func Warnln(args ...interface{}) {
-	Log.Warnln(args...)
+	if Log != nil {
+		Log.Warnln(args...)
+	}
 }
 
 // Errorln uses fmt.Sprintln to construct and log a message.
 func Errorln(args ...interface{}) {
-	Log.Errorln(args...)
+	if Log != nil {
+		Log.Errorln(args...)
+	}
 }
 
 // DPanicln uses fmt.Sprintln to construct and log a message. In development, the
 // logger then panics. (See DPanicLevel for details.)
 func DPanicln(args ...interface{}) {
-	Log.DPanicln(args...)
+	if Log != nil {
+		Log.DPanicln(args...)
+	}
 }
 
 // Panicln uses fmt.Sprintln to construct and log a message, then panics.
 func Panicln(args ...interface{}) {
-	Log.Panicln(args...)
+	if Log != nil {
+		Log.Panicln(args...)
+	}
 }
 
 // Fatalln uses fmt.Sprintln to construct and log a message, then calls os.Exit.
 func Fatalln(args ...interface{}) {
-	Log.Fatalln(args...)
+	if Log != nil {
+		Log.Fatalln(args...)
+	}
 }
 
 // Sync flushes any buffered log entries.
 func Sync() error {
-	return Log.Sync()
+	if Log != nil {
+		return Log.Sync()
+	} else {
+		return nil
+	}
 }
