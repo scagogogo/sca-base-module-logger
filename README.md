@@ -9,8 +9,10 @@ go get -u github.com/scagogogo/sca-base-module-logger
 ```yaml
 # 日志相关参数配置
 logger:
-  # 是否自动初始化日志模块 
+  # 是否自动初始化日志模块
   auto-init: true
+  # 日志的开启级别
+  level: info
   # 日志文件的输出目录
   directory: "./logs"
   # 日志开启哪些端
