@@ -166,6 +166,10 @@ github.com/rogpeppe/go-internal v1.3.0/go.mod h1:M8bDsm7K2OlrFYOpmOWEs/qY81heoFR
 github.com/rogpeppe/go-internal v1.9.0 h1:73kH8U+JUqXU8lRuOHeVHaa/SZPifC7BkcraZVejAe8=
 github.com/scagogogo/sca-base-module-config v0.0.0-20230712084023-c39a1cb31e5b h1:i6nxhiEAWv7b1QKVr/+RGZLV2ZIMJBQtjSpT/I2QXj4=
 github.com/scagogogo/sca-base-module-config v0.0.0-20230712084023-c39a1cb31e5b/go.mod h1:RtWi2dRrN137hwaVJ1K/GxzJBxDax8dg3hpdI3qkygk=
+github.com/scagogogo/sca-base-module-config v0.0.0-20230712110232-02d4103517c9 h1:xGYCbUYV1y0y1HKJ4K6GUTY+9u3aD4Q8iVzzsGg/8mI=
+github.com/scagogogo/sca-base-module-config v0.0.0-20230712110232-02d4103517c9/go.mod h1:RtWi2dRrN137hwaVJ1K/GxzJBxDax8dg3hpdI3qkygk=
+github.com/scagogogo/sca-base-module-config v0.0.0-20230713022417-b65b8af6ef6c h1:X2nT6FJ7BPsMa5Wih12jtlfWb0n8HNbsb/p2x1KUnCk=
+github.com/scagogogo/sca-base-module-config v0.0.0-20230713022417-b65b8af6ef6c/go.mod h1:RtWi2dRrN137hwaVJ1K/GxzJBxDax8dg3hpdI3qkygk=
 github.com/spf13/afero v1.9.5 h1:stMpOSZFs//0Lv29HduCmli3GUfpFoF3Y1Q/aXj/wVM=
 github.com/spf13/afero v1.9.5/go.mod h1:UBogFpq8E9Hx+xc5CNTTEpTnuHVmXDwZcZcE1eb/UhQ=
 github.com/spf13/cast v1.5.1 h1:R+kOtfhWQE6TVQzY+4D7wJLBgkdVasCEFxSUBYBYIlA=

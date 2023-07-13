@@ -58,7 +58,14 @@ func init() {
 		}
 		logDirectory = filepath.Join(projectRootDirectory, logDirectory)
 	}
-	err := Init(logDirectory)
+
+	// 日志的开启级别
+	level := "info"
+	if sca_base_module_config.Config != nil && sca_base_module_config.Config.Logger.Level != "" {
+		level = sca_base_module_config.Config.Logger.Level
+	}
+
+	err := Init(logDirectory, level)
 	if err != nil {
 		panic(err)
 	}
@@ -66,7 +73,13 @@ func init() {
 }
 
 // Init 调用初始化日志方法
-func Init(logDirectory string) error {
+func Init(logDirectory, level string) error {
+
+	enableLevel, err := zapcore.ParseLevel(level)
+	if err != nil {
+		return err
+	}
+
 	// 设置一些基本日志格式 具体含义还比较好理解，直接看zap源码也不难懂
 	encoder := zapcore.NewConsoleEncoder(zapcore.EncoderConfig{
 		MessageKey: "msg",
@@ -85,20 +98,20 @@ func Init(logDirectory string) error {
 	})
 
 	// 实现两个判断日志等级的interface
-	infoLevel := zap.LevelEnablerFunc(func(lvl zapcore.Level) bool {
-		return lvl >= zapcore.InfoLevel
+	appLog := zap.LevelEnablerFunc(func(lvl zapcore.Level) bool {
+		return lvl >= enableLevel
 	})
-
-	errorLevel := zap.LevelEnablerFunc(func(lvl zapcore.Level) bool {
+	// 只有error级别的日志会单独打一个文件，其它级别的日志都是打到一个文件
+	appErrorLevelLog := zap.LevelEnablerFunc(func(lvl zapcore.Level) bool {
 		return lvl >= zapcore.ErrorLevel
 	})
 
-	infoWriterSlice := make([]zapcore.WriteSyncer, 0)
+	appLogWriterSlice := make([]zapcore.WriteSyncer, 0)
 	errorWriterSlice := make([]zapcore.WriteSyncer, 0)
 
 	// 标准输出
 	if isEnableStdout() {
-		infoWriterSlice = append(infoWriterSlice, zapcore.AddSync(os.Stdout))
+		appLogWriterSlice = append(appLogWriterSlice, zapcore.AddSync(os.Stdout))
 		//errorWriterSlice = append(errorWriterSlice, zapcore.AddSync(os.Stdout))
 	}
 
@@ -106,13 +119,13 @@ func Init(logDirectory string) error {
 	if isEnableFileOutput() {
 
 		// 获取 info、error日志文件的io.Writer 抽象 getWriter() 在下方实现
-		infoWriter, err := getWriter(filepath.Join(logDirectory, "/info.log"))
+		infoWriter, err := getWriter(filepath.Join(logDirectory, "/app.log"))
 		if err != nil {
 			return err
 		}
-		infoWriterSlice = append(infoWriterSlice, zapcore.AddSync(infoWriter))
+		appLogWriterSlice = append(appLogWriterSlice, zapcore.AddSync(infoWriter))
 
-		errorWriter, err := getWriter(filepath.Join(logDirectory, "/error.log"))
+		errorWriter, err := getWriter(filepath.Join(logDirectory, "/app.error.log"))
 		if err != nil {
 			return err
 		}
@@ -121,8 +134,8 @@ func Init(logDirectory string) error {
 
 	// 最后创建具体的Logger
 	core := zapcore.NewTee(
-		zapcore.NewCore(encoder, zapcore.NewMultiWriteSyncer(infoWriterSlice...), infoLevel),
-		zapcore.NewCore(encoder, zapcore.NewMultiWriteSyncer(errorWriterSlice...), errorLevel),
+		zapcore.NewCore(encoder, zapcore.NewMultiWriteSyncer(appLogWriterSlice...), appLog),
+		zapcore.NewCore(encoder, zapcore.NewMultiWriteSyncer(errorWriterSlice...), appErrorLevelLog),
 	)
 
 	log := zap.New(core, zap.AddCaller()) // 需要传入 zap.AddCaller() 才会显示打日志点的文件名和行数, 有点小坑

@@ -10,7 +10,7 @@ require (
 	github.com/lestrrat-go/file-rotatelogs v2.4.0+incompatible
 	github.com/lestrrat-go/strftime v1.0.6
 	github.com/pkg/errors v0.9.1
-	github.com/scagogogo/sca-base-module-config v0.0.0-20230712084023-c39a1cb31e5b
+	github.com/scagogogo/sca-base-module-config v0.0.0-20230713022417-b65b8af6ef6c
 	github.com/stretchr/testify v1.8.4
 	go.uber.org/zap v1.24.0
 )
